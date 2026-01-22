@@ -78,7 +78,7 @@ public abstract class ResourceBaseService<T extends IsAbnormal> implements Gener
         String advice = "";
         TaskDiagnosisAdviceExample diagnoseAdviceExample = new TaskDiagnosisAdviceExample();
         diagnoseAdviceExample.createCriteria().andCategoryEqualTo(this.getCategory());
-        List<TaskDiagnosisAdvice> diagnoseAdviceList =
+        List<TaskDiagnosisAdvice> diagnoseAdviceList = // 这里要是没有数据会导致前端无法渲染cpu分析结果
                 diagnoseAdviceMapper.selectByExampleWithBLOBs(diagnoseAdviceExample);
         if (diagnoseAdviceList.size() != 0) {
             TaskDiagnosisAdvice diagnoseAdvice = diagnoseAdviceList.get(0);

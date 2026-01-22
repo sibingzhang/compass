@@ -39,6 +39,7 @@ import java.util.List;
 
 /**
  * Block list controller
+ * 对应前端的白名单诊断
  */
 @Controller
 @RequestMapping(value = "/api/v1/blocklist")

@@ -324,7 +324,7 @@ public class TaskAppServiceImpl implements TaskAppService {
         List<Item> resourceAnalyze = new ArrayList<>();
         DetectorStorage detectorStorage;
         String taskAppTempKey = applicationId + CommonCode.DIAGNOSE_DETECTORSTORAGE;
-        if (redisService.hasKey(taskAppTempKey)) {
+        if (redisService.hasKey(taskAppTempKey)) { //TODO 诊断详情是从redis中获取数据，须要看是从哪里放进去的，并且如何计算得到的数据
             detectorStorage = JSONObject.parseObject((String) redisService.get(taskAppTempKey), DetectorStorage.class);
         } else {
             Map<String, Object> termQuery = new HashMap<>();
@@ -344,7 +344,7 @@ public class TaskAppServiceImpl implements TaskAppService {
         for (ResourceBaseService resourceBaseService : resourceServiceList) {
             resourceItemCompletableFutureList.add(CompletableFuture.supplyAsync(() -> {
                 long startTime = System.currentTimeMillis();
-                Item item = resourceBaseService.generate(detectorStorage);
+                Item item = resourceBaseService.generate(detectorStorage);// 这里生成的数据要是conclusion字段没有信息，前端将无法渲染
                 long endTime = System.currentTimeMillis();
                 log.info("{} finish，duration:{}", resourceBaseService.getClass().getName(),
                         (endTime - startTime) / 1000);

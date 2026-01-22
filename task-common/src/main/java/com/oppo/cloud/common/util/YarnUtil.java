@@ -50,11 +50,12 @@ public class YarnUtil {
         log.info("yarn conf: {}", yarnConfs);
         Map<String, String> clusters = new HashMap<>();
         for (YarnConf yarnConf : yarnConfs) {
-            String activeHost = getRmActiveHost(yarnConf.getResourceManager());
+            String activeHost = getRmActiveHost(yarnConf.getResourceManager());// 找到active的RM，pro-hadooprm-dc01-003011.vm.dc01.hellocloud.tech:8088
             if (StringUtils.isBlank(activeHost)) {
                 continue;
             }
             clusters.put(activeHost, yarnConf.getClusterName());
+            // “pro-hadooprm-dc01-003011.vm.dc01.hellocloud.tech:8088” -> "IDC"
         }
         return clusters;
     }

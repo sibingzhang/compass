@@ -50,7 +50,7 @@ public class SparkMetaScheduler {
     @Resource(name = "SparkMetaServiceImpl")
     private ITaskSyncerMetaService spark;
 
-    @Scheduled(cron = "${scheduler.sparkMeta.cron}")
+    @Scheduled(cron = "${scheduler.sparkMeta.cron}") // 默认30s
     private void run() {
         try {
             syncer();

@@ -5,11 +5,11 @@ spring:
       strict: false
       datasource:
         diagnose:
-          url: jdbc:mysql://localhost:33066/compass?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false
+          url: jdbc:mysql://localhost:3306/compass?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false
           username: root
           password: root
         source:
-          url: jdbc:mysql://localhost:33066/airflow?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false
+          url: jdbc:mysql://localhost:3306/airflow?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&tinyInt1isBit=false
           username: root
           password: Root@666
 

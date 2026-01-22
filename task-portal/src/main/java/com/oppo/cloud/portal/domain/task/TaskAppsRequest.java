@@ -35,6 +35,7 @@ import java.util.Map;
 
 /**
  * ApplicationId request information
+ * 对应前端的计算任务
  */
 @Data
 @ApiModel(value = "ApplicationId request information")

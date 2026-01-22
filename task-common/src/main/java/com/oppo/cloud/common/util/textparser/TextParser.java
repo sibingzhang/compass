@@ -87,7 +87,10 @@ public class TextParser implements ITextParser {
         parseInternal(line);
     }
 
-    private void parseInternal(String line) {
+    private void parseInternal(String line) { //这三种状态的流转表示：找到错误开始的行，然后开始用MIDDLE
+        // 模式从错误信息中找信息，找到之后再用TAIL找
+        // 其实理解为1 2 3模式更贴切：首先找1 找到之后找2 然后找3，这样一个完整的错误信息就会被匹配出来
+        // 并不是指文件的开始中间结束三个物理位置
         switch (this.state) {
             case HEAD:
                 matchHeadsTemplate(line);
@@ -138,8 +141,8 @@ public class TextParser implements ITextParser {
                 for (Pattern pattern : patterns) {
                     Matcher m = pattern.matcher(line);
                     if (m.matches()) {
-                        this.blocks.add(line);
-                        this.parsingAction = parserAction;
+                        this.blocks.add(line); // 匹配到的内容
+                        this.parsingAction = parserAction; // 哪个规则解析到的
                         List<Pattern> middlePatterns = parserTemplate.getMiddles();
                         List<Pattern> tailPatterns = parserTemplate.getTails();
                         if (middlePatterns != null && middlePatterns.size() > 0) {

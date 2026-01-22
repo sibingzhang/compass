@@ -73,7 +73,7 @@ public class YarnMetaServiceImpl implements ITaskSyncerMetaService {
     private ObjectMapper objectMapper;
 
     @Resource
-    private RestHighLevelClient client;
+    private RestHighLevelClient client; //opensearch
     /**
      * Specifying a Start Time Timestamp
      */
@@ -133,7 +133,7 @@ public class YarnMetaServiceImpl implements ITaskSyncerMetaService {
             log.info("yarnApp-->{},{},{},{}", ip, app.getId(), app.getFinishedTime(), app.getFinalStatus());
         }
         BulkResponse response;
-        try {
+        try {//将yarn上拉到的任务同步到OpenSource中
             response = BulkApi.bulkByIds(client, yarnAppPrefix + DateUtil.getDay(0), yarnAppMap);
         } catch (IOException e) {
             log.error("bulkYarnAppsErr:{}", e.getMessage());

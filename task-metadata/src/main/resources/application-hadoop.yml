@@ -9,9 +9,9 @@ hadoop:
       matchPathKeys: [ "flume" ]
 
   yarn:
-    - clusterName: "bigdata"
-      resourceManager: [ "localhost:8088" ]
-      jobHistoryServer: "localhost:19888"
+    - clusterName: "IDC"
+      resourceManager: [ "pro-hadooprm-dc01-003011.vm.dc01.hellocloud.tech:8088" ]
+      jobHistoryServer: "pro-hadoophistoryserver-dc01-009116.vm.dc01.hellocloud.tech:19888"
 
   spark:
-    sparkHistoryServer: [ "localhost:18018" ]
+    sparkHistoryServer: [ "shs.hellobike.cn" ]

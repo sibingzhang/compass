@@ -129,7 +129,7 @@ public class SparkExecutorLogParser extends CommonTextParser {
     }
 
     private SparkExecutorLogParserResult parseAction(String logType, ReaderObject readerObject) throws Exception {
-        SparkExecutorLogParserResult result = parseRootAction(logType, readerObject);
+        SparkExecutorLogParserResult result = parseRootAction(logType, readerObject);// executor日志还是driver日志
         for (Map.Entry<String, ParserAction> action : result.getActionMap().entrySet()) {
             ParserManager.parseChildActions(action.getValue());
         }
@@ -142,7 +142,8 @@ public class SparkExecutorLogParser extends CommonTextParser {
         boolean isGCLog = false;
         boolean isStderr = false;
 
-        TextParser headTextParser = new TextParser(this.getActions());
+        TextParser headTextParser = new TextParser(this.getActions()); //先设置为HEAD模式 this.state =
+        // PositionState.HEAD; 也就是说要去找到我想匹配的错误信息开始的地方
         BufferedReader bufferedReader = readerObject.getBufferedReader();
         while (true) {
             String line;

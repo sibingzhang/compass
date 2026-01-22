@@ -101,3 +101,10 @@ see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 The Drain algorithm is based on `logpai` project, for more please see 
 - [https://github.com/logpai/Drain3](https://github.com/logpai/Drain3)
 - [https://jiemingzhu.github.io/pub/pjhe_icws2017.pdf](https://jiemingzhu.github.io/pub/pjhe_icws2017.pdf)
+
+docker run --name dev -d -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" -e "network.host=0.0.0.0" -e "plugins.security.disabled=true" opensearchproject/opensearch:1.3.2
+
+docker run --name dev-dash -d -p 5601:5601 -e "server.host=0.0.0.0"  -e 'OPENSEARCH_HOSTS=["http://localhost:9200"]' -e "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true" opensearchproject/opensearch-dashboards:1.3.2
+
+docker run -d --name my-redis -p 6379:6379 redis:6
+

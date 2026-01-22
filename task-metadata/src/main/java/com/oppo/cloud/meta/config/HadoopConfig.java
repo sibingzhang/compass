@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
  * hadoop config
  */
 @Configuration
-@ConfigurationProperties(prefix = "hadoop")
+@ConfigurationProperties(prefix = "hadoop") //自动绑定配置文件中以hadoop为前缀的属性，实例化出该类
 @Data
 public class HadoopConfig extends HadoopConf {
 }

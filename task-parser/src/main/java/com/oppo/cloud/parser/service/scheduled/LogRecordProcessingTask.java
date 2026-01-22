@@ -31,7 +31,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * remove task record log in redis if the task is consumed too many times exceed the limit.
+ * remove task record log in redis if the task is consumed too many times exceed the limit. 删除任务记录
  */
 @Slf4j
 @Configuration

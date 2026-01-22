@@ -49,7 +49,7 @@ public class JobRulesConfigService {
         DiagnosisConfig.getInstance().setRuleMap(this.rulesConfig);
     }
 
-    public void readConfig() {
+    public void readConfig() { // 从资源目录下获取日志匹配规则
         Map<String, String> rulesMap = new HashMap<>();
         InputStream input = JobRulesConfigService.class.getClassLoader().getResourceAsStream("rules.json");
         if (input == null) {

@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 @Slf4j
-public class OpenSearchConfig {
+public class OpenSearchConfig { //理解为ES的开源替代，用于将application信息同步到这里，这个组件用不着
 
     @Value("${spring.opensearch.nodes}")
     private String nodes;

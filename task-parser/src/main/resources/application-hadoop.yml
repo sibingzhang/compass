@@ -1,12 +1,12 @@
 
 hadoop:
   namenodes:
-    - nameservices: logs-hdfs
-      namenodesAddr: [ "host1", "host2" ]
-      namenodes: ["namenode1", "namenode2"]
-      user: hdfs
+    - nameservices: 127.0.0.1:9000
+      namenodesAddr: [ "localhost"]
+      namenodes: ["localhost"]
+      user: zhangsibing928
       password:
-      port: 8020
+      port: 9000
       # kerberos
       enableKerberos: false
       # /etc/krb5.conf

@@ -440,6 +440,25 @@
           "datetime"
         ],
         "children": []
+      },
+      {
+        "action": "celebornFailed",
+        "desc": "celeborn集群io负载过高",
+        "category": "celebornFailed",
+        "step": 9,
+        "skip": false,
+        "parserType": "DEFAULT",
+        "parserTemplate": {
+          "heads": [
+            "^(?<datetime>\\d{2,4}.\\d{2}.\\d{2}\\D+\\d{2}:\\d{2}:\\d{2}).+ERROR executor\\.Executor: Exception in task[\\s\\S]*?Caused by: java\\.io\\.IOException: createPartitionReader failed!"
+          ],
+          "middles": [],
+          "tails": []
+        },
+        "groupNames": [
+          "datetime"
+        ],
+        "children": []
       }
     ]
   },

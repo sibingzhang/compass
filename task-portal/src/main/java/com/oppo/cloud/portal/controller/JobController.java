@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Api of jobs
+ * Api of jobs 调度任务
  */
 @RestController
 @RequestMapping(value = "/api/v1/job")

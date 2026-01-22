@@ -27,6 +27,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 对应前端的报告总揽
+ */
+
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/report")

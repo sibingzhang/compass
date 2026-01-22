@@ -156,7 +156,7 @@ public class SparkMetaServiceImpl implements ITaskSyncerMetaService {
         }
 
         BulkResponse response;
-        try {
+        try {// spark application的信息也是存到OpenSource
             response = BulkApi.bulkByIds(client, sparkAppPrefix + DateUtil.getDay(0), sparkAppMap);
         } catch (Exception e) {
             log.error("bulkSparkAppsErr:", e);

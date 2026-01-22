@@ -35,7 +35,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * application interface
+ * application interface 计算任务
  */
 @RestController
 @RequestMapping("/api/v1/app")
@@ -72,7 +72,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/report/runError")
-    @ApiOperation(value = "diagnose runError of report")
+    @ApiOperation(value = "diagnose runError of report") // 计算任务诊断详情
     @ApiImplicitParams({
             @ApiImplicitParam(name = "applicationId", value = "applicationId name", required = true, dataType = "String", dataTypeClass = String.class)
     })
@@ -81,7 +81,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/report/runInfo")
-    @ApiOperation(value = "diagnose runInfo of report")
+    @ApiOperation(value = "diagnose runInfo of report") //计算任务查看详情，集群基本信息分析
     @ApiImplicitParams({
             @ApiImplicitParam(name = "applicationId", value = "applicationId name", required = true, dataType = "String", dataTypeClass = String.class)
     })
@@ -90,7 +90,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/report/runResource")
-    @ApiOperation(value = "diagnose runResource of report")
+    @ApiOperation(value = "diagnose runResource of report") // 计算任务查看详情，cpu和内存分析
     @ApiImplicitParams({
             @ApiImplicitParam(name = "applicationId", value = "applicationId name", required = true, dataType = "String", dataTypeClass = String.class)
     })
@@ -99,7 +99,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/report/runTime")
-    @ApiOperation(value = "diagnose runTime of report")
+    @ApiOperation(value = "diagnose runTime of report")// 计算任务查看详情，stage、job、task分析
     @ApiImplicitParams({
             @ApiImplicitParam(name = "applicationId", value = "applicationId name", required = true, dataType = "String", dataTypeClass = String.class)
     })
@@ -120,7 +120,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/diagnose")
-    @ApiOperation(value = "one-click diagnosis")
+    @ApiOperation(value = "one-click diagnosis") // 页面上的一键诊断功能
     @ApiImplicitParams({
             @ApiImplicitParam(name = "applicationId", value = "applicationId", required = true, dataType = "String", dataTypeClass = String.class)
     })

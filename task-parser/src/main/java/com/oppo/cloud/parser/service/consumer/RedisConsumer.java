@@ -82,12 +82,18 @@ public class RedisConsumer implements CommandLineRunner {
         }
     }
 
+    /**
+     * 一共10隔线程，每个线程每隔5s中去消费一下redis中的数据
+     * @param args
+     * @throws Exception
+     */
     @Override
     public void run(String... args) throws Exception {
         log.info("maxThreadPoolSize:{}", config.getMaxThreadPoolSize());
-        Semaphore semaphore = new Semaphore(config.getMaxThreadPoolSize());
+        Semaphore semaphore = new Semaphore(config.getMaxThreadPoolSize());// 大小为10
         while (true) {
-            try {
+            try {// 这里的数据是在com.oppo.cloud.portal.controller.LogRecordController
+                // .reportLogRecord中lLeftPush进去的， 这里RPOP出来，这样的实现先进先出，队列模式
                 String msg = (String) redisService.executeScript(logRecordConsumerScript,
                         Arrays.asList(config.getLogRecordList(), config.getProcessingHash()));
                 if (msg == null) {

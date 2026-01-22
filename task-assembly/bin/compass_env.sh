@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # dolphinscheduler or airflow or custom
-export SCHEDULER="dolphinscheduler"
+export SCHEDULER="custom"
 export SPRING_PROFILES_ACTIVE="hadoop,${SCHEDULER}"
 
 # Configuration for Scheduler MySQL, compass will subscribe data from scheduler database via canal

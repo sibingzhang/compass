@@ -104,43 +104,43 @@ public class YarnMetaServiceImpl implements ITaskSyncerMetaService {
     /**
      * Pulling Cluster Application Metadata
      */
-    public void pull(String ip, String clusterName) {
-        log.info("start to pull yarn tasks:{}", ip);
-        List<YarnApp> apps = yarnRequest(ip);
+    public void pull(String ipHost, String clusterName) {
+        log.info("start to pull yarn tasks:{}", ipHost);
+        List<YarnApp> apps = yarnRequest(ipHost); // 拿到yarn上的application
         if (apps == null) {
-            log.error("yarnMetaErr:appsNull:{}", ip);
+            log.error("yarnMetaErr:appsNull:{}", ipHost);
             return;
         }
 
         Map<String, Map<String, Object>> yarnAppMap = new HashMap<>();
         for (YarnApp app : apps) {
-            String id = ip + "_" + app.getId();
+            String id = ipHost + "_" + app.getId();
             app.setCreateTime(System.currentTimeMillis());
-            app.setIp(ip);
+            app.setIp(ipHost);
             app.setClusterName(clusterName);
             yarnAppMap.put(id, app.getYarnAppMap());
-            log.info("yarnApp-->{},{},{},{}", ip, app.getId(), app.getFinishedTime(), app.getFinalStatus());
+            log.info("yarnApp-->{},{},{},{}", ipHost, app.getId(), app.getFinishedTime(), app.getFinalStatus());
         }
         // todo:save flink metadata
-        log.info("saveYarnAppCount:{},{}", ip, yarnAppMap.size());
+        log.info("saveYarnAppCount:{},{}", ipHost, yarnAppMap.size());
     }
 
     /**
      * Obtaining YARN Jobs
      */
-    public List<YarnApp> yarnRequest(String ip) {
+    public List<YarnApp> yarnRequest(String ipHost) {
         long begin = System.currentTimeMillis() - startedTimeBegin * Constant.HOUR_MS;
-        String url = String.format(YARN_APPS_URL, ip, begin);
+        String url = String.format(YARN_APPS_URL, ipHost, begin);
         log.info("yarnUrl:{}", url);
         ResponseEntity<String> responseEntity;
         try {
             responseEntity = restTemplate.getForEntity(url, String.class);
         } catch (RestClientException e) {
-            log.error("yarnRequestErr:{},{}", ip, e.getMessage());
+            log.error("yarnRequestErr:{},{}", ipHost, e.getMessage());
             return null;
         }
         if (responseEntity.getBody() == null) {
-            log.error("yarnRequestErr:{}", ip);
+            log.error("yarnRequestErr:{}", ipHost);
             return null;
         }
         YarnResponse value;

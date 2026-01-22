@@ -31,7 +31,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-public class LogRecordController {
+public class LogRecordController { // 没有页面，开放给第三方接入，用于上传任务信息，诊断
 
     @Autowired
     private LogRecordService logRecordService;
@@ -40,7 +40,7 @@ public class LogRecordController {
     @ApiOperation(value = "report spark, may include scheduler information")
     @ResponseBody
     public CommonStatus<?> reportLogRecord(@RequestBody @Valid AppDiagnosisMetadata appInfo) throws Exception {
-        logRecordService.reportLogRecord(appInfo);
+        logRecordService.reportLogRecord(appInfo); // 支持上传第三方的spark任务信息，会存放到redis中
         return CommonStatus.success("ok");
     }
 

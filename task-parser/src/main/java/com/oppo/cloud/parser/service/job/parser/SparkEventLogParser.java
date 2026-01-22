@@ -37,6 +37,9 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * spark event log文件分析
+ */
 @Slf4j
 public class SparkEventLogParser extends IParser {
 
